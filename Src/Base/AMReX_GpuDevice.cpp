@@ -794,8 +794,8 @@ Device::setNumThreadsMin (int nx, int ny, int nz) noexcept
 void
 Device::n_threads_and_blocks (const Long N, dim3& numBlocks, dim3& numThreads) noexcept
 {
-    numThreads = 128;
-    numBlocks = std::max((N + 128 - 1) / 128, 1L); // in case N = 0
+    numThreads = AMREX_GPU_MAX_THREADS;
+    numBlocks = std::max((N + GPU_MAX_THREADS - 1) / GPU_MAX_THREADS, 1L); // in case N = 0
 }
 
 void
